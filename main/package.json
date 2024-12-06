@@ -1,0 +1,17 @@
+{
+    "name": "employeedb",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "keywords": [],
+    "author": "mcellis1",
+    "license": "MIT",
+    "description": "an sql database of employee information like role and salary",
+    "dependencies": {
+        "express": "4.21.2",
+        "inquirer": "12.1.0",
+        "pg": "8.13.1"
+    }
+}
