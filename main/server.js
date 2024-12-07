@@ -38,22 +38,25 @@ const init = () => {
                 'exit'
             ]
         }
-    ]).then((answer) => {
-        if (answer.init === 'view all departments') {
-            getDepartments()
-        } else if (answer.init === 'view all roles') {
-            getRoles()
-        } else if (answer.init === 'view all employees') {
-            getEmployees()
-        } else if (answer.init === 'add a department') {
-            addDepartment()
-        } else if (answer.init === 'exit') {
-            process.exit(0)
-        }
-    })
+    ])
+        .then((answer) => {
+            if (answer.init === 'view all departments') {
+                getDepartments()
+            } else if (answer.init === 'view all roles') {
+                getRoles()
+            } else if (answer.init === 'view all employees') {
+                getEmployees()
+            } else if (answer.init === 'add a department') {
+                addDepartment()
+            } else if (answer.init === 'add a role') {
+                addRole()
+            } else if (answer.init === 'exit') {
+                process.exit(0)
+            }
+        })
 }
 
-const getDepartments = async() => {
+const getDepartments = async () => {
     const sql = `SELECT departments.id, departments.department_name FROM departments;`
     const res = await client.query(sql)
     console.table(res.rows)
@@ -74,13 +77,58 @@ const getEmployees = async () => {
     init()
 }
 
-const addDepartment = () => {}
+const addDepartment = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'department',
+            message: 'what is the name of the new department?'
+        }
+    ])
+        .then((answer) => {
+            const sql = `INSERT INTO departments(department_name) VALUES('${answer.department}');`
+            client.query(sql)
+            console.log(`added ${answer.department} as a new department`)
+            init()
+        })
+}
 
-const addRole = () => {}
+const addRole = async () => {
+    const sql = `SELECT * FROM departments;`
+    const res = await client.query(sql)
+    console.log(res.rows)
+    // departmentList.map(departments => ({
+    //     name: departments.department_name,
+    //     value: departments.id
+    // }))
+    // return inquirer.prompt([
+    //     {
+    //         type: 'input',
+    //         name: 'title',
+    //         message: 'what is the name of the role?'
+    //     },
+    //     {
+    //         type: 'input',
+    //         name: 'salary',
+    //         message: 'what is the salary for this role?'
+    //     },
+    //     {
+    //         type: 'list',
+    //         name: 'department',
+    //         message: 'which department does this role belong to?'
+    //     }
+    // ])
+    //     .then((answers) => {
+    //         const sql = `INSERT INTO roles(title, salary, department_id) VALUES('${answers.title}', '${answers.salary}', '${answers.department}')`
+    //         client.query(sql)
+    //         console.log(`added ${answers.title} as a new role to the database`)
+    //         init()
+    //     })
+}
 
-const addEmployee = () => {}
+const addEmployee = () => { }
 
-const updateEmployeeRole = () => {}
+const updateEmployeeRole = () => { }
 
 app.use((req, res) => {
     res.status(404).end()
