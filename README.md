@@ -7,6 +7,8 @@ This project is a database for a company with employee information on what their
 
 This is my first project working with an SQL database, so I was able to learn a lot about how SQL queries work and how to use the proper syntax, which is very important with SQL because it is a very strict language when it comes to syntax.
 
+A video walkthrough demonstrating the app in action can be found on [YouTube](https://youtu.be/Yjr97bihTsI).
+
 ## Contents
 
 - [Installation](#installation)
