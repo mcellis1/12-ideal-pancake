@@ -1,17 +1,23 @@
 INSERT INTO departments (department_name)
 VALUES
-('engineering'),
-('customer service'),
-('maintenance');
+('planning'),
+('water and sewer'),
+('codes'),
+('fire marshal'),
+('security');
 
 INSERT INTO roles (title, salary, department_id)
 VALUES
-('programmer', '80000', 1),
-('cashier', '60000', 2),
-('custodian', '55000', 3);
+('planner', '74000', 1),
+('engineer', '77000', 2),
+('inspector', '60000', 3),
+('reviewer', '82000', 4),
+('guard', '65000', 5);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES
-('jeff', 'kaplan', 3, null),
-('george', 'bush', 1, 1),
-('steve', 'martin', 2, null);
+('george', 'straight', 1, null),
+('john', 'stamos', 2, null),
+('rick', 'astly', 3, 1),
+('leon', 'richie', 4, 1),
+('jimmy', 'buffet', 5, 3);
